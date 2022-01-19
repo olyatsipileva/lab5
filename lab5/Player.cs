@@ -11,6 +11,9 @@ namespace lab5
     public class Player : BaseObject
     {
         public Action<Marker> OnMarkerOverlap;
+
+        public Action<MyEllipse> OnMyEllipseOverlap;
+
         public float vX, vY;
 
         public Player(float x, float y, float angle) : base(x, y, angle)
@@ -44,6 +47,10 @@ namespace lab5
             if (obj is Marker)
             {
                 OnMarkerOverlap(obj as Marker);
+            }
+            if (obj is MyEllipse)
+            {
+                OnMyEllipseOverlap(obj as MyEllipse);
             }
         }
     }

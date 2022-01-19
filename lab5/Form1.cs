@@ -11,6 +11,8 @@ namespace lab5
         List<BaseObject> objects = new List<BaseObject>();
         Player player;
         Marker marker;
+        int score = 0;
+        Random rnd = new Random();
 
         public Form1()
         {
@@ -28,11 +30,18 @@ namespace lab5
                 objects.Remove(m);
                 marker = null;
             };
+            player.OnMyEllipseOverlap += (e) =>
+            {
+                objects.Remove(e);
+                score++;
+                txtScore.Text = "Очки: " + score.ToString();
+                objects.Add(GenerateEllipse());
+            };
             objects.Add(player);
-            objects.Add(new MyEllipse(50, 50, 0));
-            objects.Add(new MyEllipse(100, 100, 45));
-            marker = new Marker(0, 0, 0);
-            objects.Add(marker);
+            for (int i = 0; i < 4; i++)
+            {
+                objects.Add(GenerateEllipse());
+            }
         }
 
         private void pbMain_Paint(object sender, PaintEventArgs e)
@@ -51,7 +60,6 @@ namespace lab5
                 {
                     player.Overlap(obj); // то есть игрок пересекся с объектом
                     obj.Overlap(player); // и объект пересекся с игроком
-
                 }
 
                 // рендерим объекты
@@ -59,6 +67,16 @@ namespace lab5
                 {
                     g.Transform = element.GetTransform();
                     element.Render(g);
+                }
+
+                // меняется размер кружка
+                if (obj is MyEllipse)
+                {
+                    if (obj.Size <= 0)
+                    {
+                        objects.Remove(obj);
+                        objects.Add(GenerateEllipse());
+                    }
                 }
             }
         }
@@ -109,6 +127,16 @@ namespace lab5
 
             marker.X = e.X;
             marker.Y = e.Y;
+        }
+
+        private MyEllipse GenerateEllipse()
+        {
+            return new MyEllipse
+                           (rnd.Next(pbMain.Width),
+                            rnd.Next(pbMain.Height),
+                            0,
+                            rnd.Next(30, 50)
+                            );
         }
     }
 }

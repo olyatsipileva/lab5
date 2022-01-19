@@ -13,6 +13,7 @@ namespace lab5
         public float X;
         public float Y;
         public float Angle;
+        public float Size;
         // добавил поле делегат, к которому можно будет привязать реакцию на собыития
         public Action<BaseObject, BaseObject> OnOverlap;
 
@@ -21,6 +22,14 @@ namespace lab5
             X = x;
             Y = y;
             Angle = angle;
+        }
+
+        public BaseObject(float x, float y, float angle, float size)
+        {
+            this.X = x;
+            this.Y = y;
+            this.Angle = angle;
+            this.Size = size;
         }
 
         public Matrix GetTransform()
@@ -36,7 +45,8 @@ namespace lab5
         {
             // тут пусто
         }
-         public virtual GraphicsPath GetGraphicsPath()
+
+        public virtual GraphicsPath GetGraphicsPath()
         {
             return new GraphicsPath();
         }

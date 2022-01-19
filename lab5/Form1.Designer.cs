@@ -32,6 +32,7 @@
             this.pbMain = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.txtLog = new System.Windows.Forms.RichTextBox();
+            this.txtScore = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbMain)).BeginInit();
             this.SuspendLayout();
             // 
@@ -39,7 +40,7 @@
             // 
             this.pbMain.Location = new System.Drawing.Point(0, -1);
             this.pbMain.Name = "pbMain";
-            this.pbMain.Size = new System.Drawing.Size(799, 451);
+            this.pbMain.Size = new System.Drawing.Size(545, 451);
             this.pbMain.TabIndex = 0;
             this.pbMain.TabStop = false;
             this.pbMain.Paint += new System.Windows.Forms.PaintEventHandler(this.pbMain_Paint);
@@ -59,11 +60,21 @@
             this.txtLog.TabIndex = 1;
             this.txtLog.Text = "";
             // 
+            // txtScore
+            // 
+            this.txtScore.BackColor = System.Drawing.Color.White;
+            this.txtScore.Location = new System.Drawing.Point(483, 9);
+            this.txtScore.Name = "txtScore";
+            this.txtScore.Size = new System.Drawing.Size(51, 20);
+            this.txtScore.TabIndex = 2;
+            this.txtScore.Text = "Очки: 0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtScore);
             this.Controls.Add(this.txtLog);
             this.Controls.Add(this.pbMain);
             this.Name = "Form1";
@@ -78,6 +89,7 @@
         private System.Windows.Forms.PictureBox pbMain;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.RichTextBox txtLog;
+        private System.Windows.Forms.Label txtScore;
     }
 }
 
